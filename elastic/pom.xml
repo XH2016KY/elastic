@@ -28,7 +28,7 @@
 		<slf4j.version>1.7.22</slf4j.version>
 	</properties>
 	<!-- Sping 整合 Elastic -->
-         <!-- 依赖包 -->
+	<!-- 依赖包 -->
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -177,6 +177,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+
 	</dependencies>
 	<!-- jdk1.8 -->
 	<build>

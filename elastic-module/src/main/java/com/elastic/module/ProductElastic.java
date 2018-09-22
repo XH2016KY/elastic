@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  * 
  * @author happyeveryday
  * 注释: 商品搜索实体
- * 2018 2018年9月23日
+ * 2018年9月23日
  */
 @SuppressWarnings("serial")
 @Data

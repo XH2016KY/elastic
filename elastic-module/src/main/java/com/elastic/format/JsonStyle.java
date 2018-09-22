@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @author happyeveryday
  * 注释: Json字符串
- * 2018 2018年9月23日
+ * 2018年9月23日
  */
 public interface JsonStyle {
 	
