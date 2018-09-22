@@ -6,11 +6,16 @@
   <name>elastic-service Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-    <dependency>
+    <!-- <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency> -->
+    <dependency>
+        <groupId>com.elastic</groupId>
+        <artifactId>elastic-module</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
   <build>
