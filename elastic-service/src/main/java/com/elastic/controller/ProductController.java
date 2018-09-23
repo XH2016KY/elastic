@@ -1,12 +1,23 @@
 package com.elastic.controller;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,13 +28,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 2018 2018年9月23日
  */
 @Controller
+@RequestMapping(produces="application/json;charset=UTF-8")
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class ProductController {
 	
 	@Autowired
 	private TransportClient client;
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@GetMapping("/get/people/man")
+	/**
+	 * 查询单个实体
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value="/get/people/man")
     @ResponseBody
     public ResponseEntity get(@RequestParam(name = "id",defaultValue = "")String id){
         if(id.isEmpty()){
@@ -35,6 +52,57 @@ public class ProductController {
         }
         return new ResponseEntity(result.getSource(),HttpStatus.OK);
     }
+	
+	/**
+	 * 在索引里添加实体
+	 * @param date
+	 * @param age
+	 * @param keyword
+	 * @param name
+	 * @return
+	 * @throws ParseException 
+	 */
+	@PostMapping(value="add/people/man")
+	@ResponseBody
+	public ResponseEntity add(
+			@RequestParam(name = "date")
+			@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date date,
+			@RequestParam(name = "age")Integer age,
+			@RequestParam(name = "country")String keyword,
+			@RequestParam(name = "name")String name
+			) throws ParseException{
+		        try {
+					XContentBuilder context = XContentFactory.jsonBuilder()
+					.startObject()
+					.field("date",date.getTime())
+					.field("age",age)
+					.field("country",keyword)
+					.field("name",name)
+					.endObject();
+					IndexResponse result = this.client.prepareIndex("people", "man")
+					.setSource(context)
+					.get();
+					System.out.println(result.toString());
+					System.out.println(result.getId());
+				return new ResponseEntity(result,HttpStatus.OK);
+				} catch (IOException e) {
+					e.printStackTrace();
+					return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+		
+	}
+	
+	/**
+	 *  根据索引id删除
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping(value = "delete/people/man")
+	public ResponseEntity delete(@RequestParam(name = "id")String id){
+		      DeleteResponse result = this.client.prepareDelete("people","man",id).get();
+		return new ResponseEntity(result,HttpStatus.OK);
+		
+	}
 	
 
 }
