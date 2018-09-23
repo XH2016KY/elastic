@@ -15,6 +15,11 @@ public interface PeopleRepository /*extends ElasticsearchRepository<people, Inte
 	 * 查询所有文件
 	 */
 	List<people>findAll();
+	/**
+	 * 查询单个实例
+	 * @return
+	 */
+	people findOne();
 	
     
 }
