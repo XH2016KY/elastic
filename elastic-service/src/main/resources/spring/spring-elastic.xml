@@ -8,14 +8,16 @@ http://www.springframework.org/schema/data/elasticsearch
 http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd">
 
 	<!-- 倒入数据仓库 -->
-	<elasticsearch:repositories
-		base-package="com.elastic.repositories" />
+	<!-- <elasticsearch:repositories
+		base-package="com.elastic.repositories" /> -->
 	<!-- 配置客服端 -->
-	<elasticsearch:transport-client
-		id="master" cluster-nodes="192.168.200.154:9300" />
+	<!-- <elasticsearch:transport-client
+		id="master" cluster-nodes="192.168.200.154:9300" /> -->
 	<!-- 配置搜索模板 -->
-	<bean id="elasticsearchTemplate"
+	<!-- <bean id="elasticsearchTemplate"
 		class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
 		<constructor-arg name="client" ref="master" />
-	</bean>
+	</bean> -->
+	<!-- 配置的ElasticSearch集群配置 -->
+	<bean class="com.elastic.config.MyConfig"/>
 </beans>

@@ -17,6 +17,11 @@
         <artifactId>elastic-module</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
+     <dependency>
+        <groupId>com.elastic</groupId>
+        <artifactId>elastic-swagger</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>elastic-service</finalName>
