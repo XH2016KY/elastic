@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class PeopleController {
 	
-	@Autowired
+	@Autowired(required = false)
 	private TransportClient client;
 	
 	/**
