@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(produces="application/json;charset=UTF-8")
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public class ProductController {
+public class PeopleController {
 	
 	@Autowired
 	private TransportClient client;
