@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 
  * @author happyeveryday
- * 注释: 商品控制层
+ * 注释: people控制层
  * 2018 2018年9月23日
  */
 @Controller
